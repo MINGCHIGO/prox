@@ -11,24 +11,207 @@ if(isset($_REQUEST['clear'])&&$_REQUEST['clear']=='clear'){
 }else{
   clearTemp(false);
 }
-if(isset($_REQUEST['url'])&&!empty($_REQUEST['url'])){
+if(isset($_REQUEST['url'])&&!empty($_REQUEST['url'])) {
   $url = $_REQUEST['url'];
   $encode=(isset($_REQUEST['encode'])&&$_REQUEST['encode']=='yes')?'yes':'no';
   $full=(isset($_REQUEST['full'])&&$_REQUEST['full']=='yes')?'yes':'no';
   $fixhref=(isset($_REQUEST['fixhref'])&&$_REQUEST['fixhref']=='yes')?'yes':'no';
   loadPage($url,$encode,$full,$fixhref);
-}
-else{
+} else {
   ?>
-  <form method="get" action="<?=$_SERVER['PHP_SELF']?>">
-    <input type="text" name="url" style="width:1000px" /><br/>
-    Proxy full resources <input type="checkbox" name="full" value="yes" <?=is_dir($TEMP_DIR)?'':'disabled="disabled"'?>/>
-    Change encoding <input type="checkbox" name="encode" value="yes" checked="checked"/>
-    Fix hrefs <input type="checkbox" name="fixhref" value="yes" checked="checked"/><br/>
-    <input type="submit" value="GO"/>
-    <button tabIndex="-1" onclick="if(confirm('Sure?')==true){window.location.href='?clear=clear';} return false;">Clear all cookies</button>
+
+ <!DOCTYPE html>
+<html>
+    <head>
+        <link rel="shortcut icon" type="image/png" href="favicon.ico"/>
+        <title>Google</title>
+        <style>
+header {
+    position: absolute;
+    top:12px;
+    right:30px;
+}
+
+header a:link, a:visited, a:active {
+    color: #2a2a2a;
+    font-family: arial, sans-serif;
+    font-size:12px;
+    text-decoration:none;
+    margin-right:5px;
+    margin-left:5px;
+    position:relative;
+    top:-10px;
+}
+
+header a:hover {
+    text-decoration:underline;
+}
+
+#products {
+    margin-right:8px;
+    margin-left:8px;
+}
+
+#bell {
+    margin-right:10px;
+    margin-left:8px;
+}
+
+#share {
+    margin-right:10px;
+    margin-left:10px;
+}
+
+#lara {
+    border-radius:50%;
+}
+
+div {
+    display:block;
+    margin: auto;
+    text-align:center;
+    padding-top: 14%;
+}
+
+div img {
+    width: 270px;
+    height: 95px;
+    margin:5px;
+}
+
+.search {
+    width: 60%;
+    height: 28px;
+    font: 16px arial, sans-serif;
+    text-indent:5px;
+    background-repeat:no-repeat;
+    background-position:548px 4px;
+    background-size:14px 19px;
+    border-radius: 20px;
+    background-color: #444444;
+    color: white;
+    }
+
+.button {
+    border: 1px solid #d3d3d3;
+    background: #f3f3f3;
+    color:#696969;
+    margin-left:4px;
+    margin-right:4px;
+    margin-top: 25px;
+    font-family: arial, sans-serif;
+    font-size: 11px;
+    font-weight: bold;
+    padding: 7px;
+    border-radius:40px;
+}
+
+.buttonsearch {
+    height: 28px;
+    border: 1px solid #d3d3d3;
+    background: #f3f3f3;
+    color:#696969;
+    margin-left:4px;
+    margin-right:4px;
+    margin-top: 25px;
+    font-family: arial, sans-serif;
+    font-size: 11px;
+    font-weight: bold;
+    padding: 7px;
+    border-radius:40px;
+}
+
+.button:hover {
+    color: #2a2a2a;
+    border: 1px solid #bdbdbd;
+}
+
+.search:hover {
+    border:1px solid #aaaaaa;
+    background-color: #aaaaaa
+}
+
+footer {
+    position: absolute;
+    bottom:0px;
+    left:0px;
+    right:0px;
+    background:#555555;
+    padding-top:22px;
+}
+
+footer a:link, a:visited, a:active {
+    color: white;
+    font-family: arial, sans-serif;
+    font-size:12px;
+    text-decoration:none;
+    }
+    
+footer a:hover {
+    text-decoration:underline;
+}
+    
+.leftlinks {
+    position: relative;
+    bottom:12px;
+    left:18px;
+    padding-right:15px;
+    padding-left:15px;
+}
+
+.rightlinks {
+    position: relative;
+    bottom:9px;
+    float:right;
+    right:18px;
+    padding-right:15px;
+    padding-left:15px;
+}
+
+body {
+    background-color: #202124;
+}
+         
+.check {
+    visibility: hidden;       
+}
+    
+input[type="search"]::-webkit-search-decoration,
+input[type="search"]::-webkit-search-cancel-button,
+input[type="search"]::-webkit-search-results-button,
+input[type="search"]::-webkit-search-results-decoration { display: none; }
+input[type=text]::-ms-clear {  display: none; width : 0; height: 0; }
+input[type=text]::-ms-reveal {  display: none; width : 0; height: 0; }
+
+        </style>
+    </head>
+    <body>
+        <header>
+            <a href="https://mail.google.com">Gmail</a>
+            <a href="https://www.google.com/imghp?hl=en&tab=wi&ei=Ox1NVMXuJYO3yATCjoFA&ved=0CAQQqi4oAg">Images</a>
+        </header>
+        <div>
+            <img src="https://www.google.com/images/branding/googlelogo/1x/googlelogo_light_color_272x92dp.png"/>
+             <form method="get" action="index.php">
+    <input type="text" name="url" class="search"/><br/>
+   <input type="checkbox" class="check"  name="full" value="yes" <?=is_dir($TEMP_DIR)?'':'disabled="disabled"'?>/>
+   <input type="checkbox" class="check"   name="encode" value="yes" checked="checked"/>
+<input type="checkbox" class="check" name="fixhref" value="yes" checked="checked"/><br/>
+    <input class="buttonsearch" type="submit" value="Google Search"/>
+    <button tabIndex="-1" class="button" onclick="if(confirm('Sure?')==true){window.location.href='?clear=clear';} return false;">I'm Feeling Lucky</button>
   </form>
-  <?
+        </div>
+        <footer>
+            <a class="leftlinks" href="https://www.google.com/intl/en/ads/?fg=1">Advertising</a>
+            <a class="leftlinks" href="https://www.google.com/services/?fg=1">Business</a>
+            <a class="leftlinks" href="https://www.google.com/intl/en/about/">About</a>
+            <a class="rightlinks" href="https://www.google.com/preferences?hl=en">Settings</a>
+            <a class="rightlinks" href="https://www.google.com/intl/en/policies/?fg=1">Privacy & Terms</a>
+        </footer>
+    </body>
+</html>
+
+  <?php
 }
 
 function loadPage($targetUrl,$encode,$full,$fixhref){
@@ -157,4 +340,11 @@ function clearTemp($clearCookies){
       return mb_convert_encoding($text,"UTF-8",$encodeType);  //Change to UTF-8
     }
   }
+
+  EOF
   ?>
+  
+
+
+
+
