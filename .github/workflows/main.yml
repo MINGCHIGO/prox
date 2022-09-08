@@ -13,4 +13,4 @@ jobs:
       - uses: nanasess/setup-php@v3
         with:
           php-version: '8.1'
-      - run: php my_script.php
+      - run: php index.php
